@@ -1,6 +1,7 @@
-from flask import Flask
+from flask import Flask, render_template
 from validate_docbr import CPF
 from validate_docbr import CNPJ
+
 
 cnpj = CNPJ()
 cpf = CPF()
@@ -12,25 +13,30 @@ app = Flask("Minha App")
 @app.route("/")
 
 def home():
-    return "<h1> Home Page!!! </h1>"
+    return render_template("home.html")
 
 #/ contato - página de contato
 @app.route("/contato")
 
 def contato():
-    return "<h1> Contato </h1>"
+    return render_template("contato.html")
 
 #/produtos - pagina produtos
 @app.route("/produto")
 
-def produto():
-    return "<h1> Produtos Legais </h1>"
+def produtos():
+    lista_produtos = [
+        {"nome" : "Coca-Cola", "descricao" : "Mata a sede"},
+        {"nome" : "Doritos", "descricao" : "Suja a mão"},
+        {"nome" : "Chocolate", "descricao" : "Bom"},
+    ]
+    return render_template("produto.html", produtos = lista_produtos)
 
 #/produtos - pagina servicos
 @app.route("/servicos")
 
 def servicos():
-    return "<h1> Nossos serviços são: Emissão de notas fiscais, abertura de empresa e fechamento de empresa  </h1>"
+    return render_template("servicos.html")
 
 #/produtos - pagina gerar-cpf
 @app.route("/gerar-cpf")
@@ -46,6 +52,7 @@ def gerarcpf():
 
 def gerarcnpj():
     cnpjs = []
+    
 
     for i in range(10):
         cnpjs.append(cpf.generate(True))
@@ -56,9 +63,6 @@ def gerarcnpj():
 #pagina/ servicos retornar "Nosso serviços"
 #pagina/ gerar-cpf retornar cpf aleatorio
 #pagina/ gerar-cnpj retornar cnpj aleatorio
-
-
-
 
 
 app.run(debug=True)
