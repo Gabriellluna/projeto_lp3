@@ -42,12 +42,12 @@ def servicos():
 @app.route("/gerar-cpf")
 
 def gerarcpf():
-    cpfs = []
-    for i in range(10):
-        cpfs.append(cpf.generate(True))
+    # cpfs = []
+    # for i in range(10):
+    #     cpfs.append(cpf.generate(True))
     
         
-    return render_template("cpf.html", gerarcpf = cpfs)
+    return render_template("cpf.html", gerarcpf = cpf.generate_list(n=20))
 @app.route("/gerar-cnpj")
 
 def gerarcnpj():
