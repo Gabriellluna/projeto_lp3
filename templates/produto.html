@@ -10,6 +10,7 @@
 <p>Confira nossos produtos mais novos!</p>
 
 {% for produto in produtos %}
+<img style="height: 200px; width: 200px;" src="{{produto.url}}" alt="nada">
 <h2>{{produto.nome}}</h2>
 <p>{{ produto.descricao}}</p>
 {% endfor %}

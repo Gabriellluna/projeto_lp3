@@ -26,9 +26,9 @@ def contato():
 
 def produtos():
     lista_produtos = [
-        {"nome" : "Coca-Cola", "descricao" : "Mata a sede"},
-        {"nome" : "Doritos", "descricao" : "Suja a mão"},
-        {"nome" : "Chocolate", "descricao" : "Bom"},
+        {"nome" : "Coca-Cola", "descricao" : "Mata a sede", "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm4S15squn95k7qtrVOpMX1MOJGe48y4B7FQ&s"},
+        {"nome" : "Doritos", "descricao" : "Suja a mão", "url": "https://atacadaobr.vtexassets.com/arquivos/ids/252509/g.jpg?v=638353972719200000"},
+        {"nome" : "Chocolate", "descricao" : "Bom", "url" : "https://www.havan.com.br/media/catalog/product/cache/73a52df140c4d19dbec2b6c485ea6a50/b/a/barra-de-chocolate-ao-leite-nestle_806102.jpg"},
     ]
     return render_template("produto.html", produtos = lista_produtos)
 
@@ -45,19 +45,39 @@ def gerarcpf():
     cpfs = []
     for i in range(10):
         cpfs.append(cpf.generate(True))
+    
         
-    return  f'Aki: {cpfs} '
-#/produtos - pagina gerar-cnpj
+    return render_template("cpf.html", gerarcpf = cpfs)
 @app.route("/gerar-cnpj")
 
 def gerarcnpj():
-    cnpjs = []
-    
+    cnpjs = []   
 
     for i in range(10):
         cnpjs.append(cpf.generate(True))
         
-    return  f'Aki: {cnpjs} '
+    return render_template("cnpj.html", gerarcnpj = cnpjs)
+
+@app.route("/enviado")
+
+def Enviado():
+    return render_template("enviado.html")
+
+@app.route("/ComoUsar")
+
+def ComoUsar():
+    return render_template("ComoUsar.html")
+    
+
+@app.route("/Privacidade")
+
+def Privacidade():
+    return render_template("privacidade.html")
+
+@app.route("/Termos")
+
+def Termos():
+    return render_template("termos.html")
     
 
 #pagina/ servicos retornar "Nosso serviços"
